@@ -1,8 +1,15 @@
-#title
+#banner
 {
-
+    display: flex;
+    margin-top: 20px;
 }
-#submit
+
+/*#submit
 {
     
+} */
+
+body {
+    margin: 0;
+    font-family: arial;
 }
