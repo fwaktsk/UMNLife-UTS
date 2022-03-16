@@ -12,51 +12,105 @@
     <body>
         <div id="top">
             <div id="banner" class="d-block align-items-center justify-content-center">
-                <img width="80" src="images/piala.png" class="img-fluid" style="display: block; margin: auto;"/>
+                <img width="80" src="images/piala.png" class="img-fluid"/>
                 <br />
                 <div class="text-center">
                     <h3>Ujian Tengah Semester</h3>
                 </div>
             </div>
         </div>
-        <hr style="height:2px; opacity:100% ;">
+        <hr style="height:2px; opacity:100%;">
+        <!-- progress ama meter ga sama ukurannya (padahal pxnya sama) -->
         <div id="status">
-            
+            <div class="row md-6">
+                <meter id="hunger" min="0" value="50" max="100"></meter>
+                <meter id="entertainment" min="0" value="50" max="100"></meter>
+            </div>
+            <div class="row md-6">
+                <meter id="rest" min="0" value="50" max="100"></meter>
+                <progress id="study" min="0" value="0" max="100"></progress>
+            </div>
+        </div>
+        <br>
+        <div id="home">
+            <h2 id="greet">
+            </h2>
+            <h4 id="time">
+
+            </h4>
         </div>
         <div id="menu" class="d-flex align-items-center justify-content-center">
-            <button onclick="leftArrow()" style="display: flex; background-color:transparent;border: 0;"><img width="80" src="images/left_arrow.png"/></button>
-            <img id="avatar" width="25%" style="display: flex;" src="images/1.png">
-            <button onclick="rightArrow()" style="display: flex; background-color:transparent;border: 0;"><img width="80" src="images/right_arrow.png"/></button>
+            <input type="image" src="images/left_arrow.png" style="width: 5%;" onclick="leftArrow()" id="leftArrow" />
+            <img id="avatar" width="25%" src="images/1.png">
+            <input type="image" src="images/right_arrow.png" style="width: 5%;" onclick="rightArrow()" id="rightArrow" />
         </div>
-        <div id="title" class="container align-items-center align-content-center" style="text-align: center;" >
+        <div id="regis" class="container align-items-center align-content-center">
             <p>Enter your name here...</p>
             
             <form>
-                <div class="container form-floating" style="width: 300px;">
+                <div class="container form-floating" style="width: 30%;">
                     <input type="text" id="nama" class="form-control" placeholder="Nama" />
-                    <label for="nama"> Nama </label>
+                    <label for="nama" style="width: 30%;">Nama</label>
                 </div>
                 
-                <button type="button" onclick="startGame()" class="btn btn-primary mt-3 mx-auto d-block">PLAY</button>
+                <button type="button" id="playGame" onclick="startGame()" class="btn btn-primary mt-3 mx-auto d-block">PLAY</button>
             </form>
+        </div>
+        <div id="actions" class="container align-content-center align-items-center">
+
         </div>
 
         <script type="text/javascript">
             function startGame()
             {
+                name = document.getElementById("nama").value;
+                if(name != '')
+                {
+                    document.getElementById("greet").innerHTML = "<strong>Good Day, "+name+"</strong>";
+                    document.getElementById("status").style.display = "flex";
+                    document.getElementById("leftArrow").style.display = "none";
+                    document.getElementById("rightArrow").style.display = "none";
+                    document.getElementById("regis").style.display = "none";
 
+                    // WIP
+                    document.getElementById("actions").style.display = "inline";
+                }
             }
             function leftArrow()
             {
                 img = document.getElementById("avatar");
                 e = img.getAttribute("src");
-                index = e.slice("/");
-                a = document.createTextNode(index);
-                document.getElementById("menu").appendChild(a);
+                path = e.split("/");
+                index = path[1].split(".",1);
+                if(index==2)
+                {
+                    document.getElementById("leftArrow").style.visibility = "hidden";
+                }
+                index--;
+                newPath = "images/"+index+".png";
+                document.getElementById("avatar").setAttribute("src",newPath);
+                if(index==7)
+                {
+                    document.getElementById("rightArrow").style.visibility = "visible";
+                }
             }
             function rightArrow()
             {
-
+                img = document.getElementById("avatar");
+                e = img.getAttribute("src");
+                path = e.split("/");
+                index = path[1].split(".",1);
+                if(index==7)
+                {
+                    document.getElementById("rightArrow").style.visibility = "hidden";
+                }
+                index++;
+                newPath = "images/"+index+".png";
+                document.getElementById("avatar").setAttribute("src",newPath);
+                if(index==2)
+                {
+                    document.getElementById("leftArrow").style.visibility = "visible";
+                }
             }
             function showTime() //simulasi jam
             {
@@ -74,7 +128,3 @@
         </script>
     </body>
 </html>
-
-<!-- pusing by ntoo -->
-<!-- gambar piala belum berada diposisi yg tepat (sudah)-->
-<!-- ndfmfdsnnsdf n dsm sdfn sdfn sdfms n sdfknsdfds-->

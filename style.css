@@ -1,15 +1,70 @@
+body
+{
+    margin: 0;
+    font-family: arial;
+}
+
 #banner
 {
-    display: flex;
     margin-top: 20px;
 }
 
-/*#submit
+#banner img
 {
-    
-} */
+    display: block;
+    margin: auto;
+}
 
-body {
-    margin: 0;
-    font-family: arial;
+#regis
+{
+    text-align: center;
+}
+
+#status
+{
+    display: none;
+    border: 1px solid;
+    height: 200px;
+    width: 50%;
+    margin: auto;
+    padding: 10px;
+}
+
+#status meter
+{
+    width: 200px;
+    height: 50px;
+}
+
+#status progress
+{
+    width: 200px;
+    height: 50px;
+}
+
+#home
+{
+    text-align: center;
+}
+
+#menu input[type="image"]
+{
+    background-color:transparent;
+    border: 0;
+    width: min-content;
+}
+
+#leftArrow
+{
+    visibility: hidden;
+}
+
+#playGame
+{
+    width: 100px;
+}
+
+#actions
+{
+    display: none;
 }
