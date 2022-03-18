@@ -3,7 +3,7 @@ Ini Project UTS Kelompok 2 IF231-F
 UMNLife adalah project simulasi kehidupan mahasiswa yang melatih mood, time, and "getting your life together" management dari pemain. Permainan ini akan membawa pemain kedalam tantangan untuk memanajemen hidup dan waktunya.
 
 ## Kelas: IF231-F
-### Anggota:
+### Anggota Kelompok:
 Steven Vincent Hendrawan (00000043664)
 Meitio Susanto (00000044843)
 Moch. Bima (00000045997)
