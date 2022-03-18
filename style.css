@@ -4,6 +4,11 @@ body
     font-family: arial;
 }
 
+#icon
+{
+    width: 20%;
+}
+
 #banner
 {
     margin-top: 20px;
@@ -15,6 +20,15 @@ body
     margin: auto;
 }
 
+#ui
+{
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    background-image: none;
+    border-radius: 16px;
+}
+
 #regis
 {
     text-align: center;
@@ -22,12 +36,14 @@ body
 
 #status
 {
+    background-color: gainsboro;
     display: none;
-    border: 1px solid;
-    height: 200px;
+    box-shadow: 10px 10px rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
     width: 50%;
     margin: auto;
     padding: 10px;
+    align-content: center;
 }
 
 #status meter
@@ -49,7 +65,7 @@ body
 
 #menu input[type="image"]
 {
-    background-color:transparent;
+    background-color: none;
     border: 0;
     width: min-content;
 }
@@ -67,4 +83,26 @@ body
 #actions
 {
     display: none;
+}
+
+#actions button
+{
+    width: 100px;
+}
+
+#refresh
+{
+    visibility: hidden;
+}
+
+#refresh button
+{
+    width: 5%;
+    border-radius: 5px;
+}
+
+#refresh img
+{
+    width: 100%;
+    margin: auto;
 }
