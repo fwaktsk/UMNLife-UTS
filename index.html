@@ -23,12 +23,27 @@
         <!-- progress ama meter ga sama ukurannya (padahal pxnya sama) -->
         <div id="status">
             <div class="row md-6">
-                <meter id="hunger" min="0" value="50" max="100"></meter>
-                <meter id="entertainment" min="0" value="50" max="100"></meter>
+                <div class="col">
+                    <label for="hunger">image hunger</label>
+                    <meter id="hunger" min="0" low="15" value="75" optimum="60" high="70" max="100"></meter>
+                </div>
+                <div>
+                    <label for="entertainment">image hunger</label>
+                    <meter id="entertainment" min="0" low="15" value="75" optimum="60" high="70" max="100"></meter>
+                </div>
             </div>
             <div class="row md-6">
-                <meter id="rest" min="0" value="50" max="100"></meter>
-                <progress id="study" min="0" value="0" max="100"></progress>
+                <div class="col">
+                    <label for="rest">image rest</label>
+                    <meter id="rest" min="0" low="15" value="75" optimum="60" high="70" max="100"></meter>
+                </div>
+                <div>
+                    <label for="study">image study</label>
+                    <progress id="study" value="0" max="100"></progress>
+                </div>
+            </div>
+            <div class="col md-6">
+                <h4 id="semester"></h4>
             </div>
         </div>
         <br>
@@ -36,7 +51,8 @@
             <h2 id="greet">
             </h2>
             <h4 id="time">
-
+                <body onload="showTime()">
+                <div id="jam"></div>
             </h4>
         </div>
         <div id="menu" class="d-flex align-items-center justify-content-center">
@@ -61,6 +77,11 @@
         </div>
 
         <script type="text/javascript">
+            var game = 0;
+            var low = 15;
+            var high = 75;
+
+            var name;
             function startGame()
             {
                 name = document.getElementById("nama").value;
@@ -71,8 +92,8 @@
                     document.getElementById("leftArrow").style.display = "none";
                     document.getElementById("rightArrow").style.display = "none";
                     document.getElementById("regis").style.display = "none";
-
-                    // WIP
+                    game = 1;
+                    document.getElementById("semester").innerHTML = "Semester 1";
                     document.getElementById("actions").style.display = "inline";
                 }
             }
@@ -112,19 +133,73 @@
                     document.getElementById("leftArrow").style.visibility = "visible";
                 }
             }
-            function showTime() //simulasi jam
-            {
+            function showTime() {
                 const today = new Date();
                 let h = today.getHours();
-                let m = today.getSeconds();
-                m = checkTime(m);
-                document.getElementById('jam').innerHTML = h + ":" + m;
-                setTimeout(startTime, 1000);
+                let m = today.getMinutes();
+                let s = today.getSeconds();
+                m = checkTime(s);
+                document.getElementById('jam').innerHTML =  h + ":" + m;
+                setTimeout(showTime, 1000);
             }
-            function checkTime(i) // pendukung simulasi jam
-            {
+
+            function checkTime(i) {
                 if (i < 10) {i = "0" + i};
+                return i;
             }
+
+            function gameOver(hunger, ent, rest)
+            {
+                clearInterval(statbar);
+                if(hunger == 0)
+                {
+                    alert("GAME OVER... "+ name + " meninggal akibat penyakit dari kelaparan :(((");
+                    //tampilan mati kelaparan
+                }
+                else if(ent == 0)
+                {
+                    alert("GAME OVER... "+ name + " jadi gila akibat stress dan kurang hiburan :(((");
+                    //tampilan stress dan jadi gila
+                }
+                else if(rest == 0)
+                {
+                    alert("GAME OVER... "+ name + " mati terkena serangan jantung karena kecapean :(((");
+                    //tampilan mati kecapean
+                }
+            }
+
+            statbar = setInterval(function ()
+            {
+                if(game != 0)
+                {
+                    hunger = document.getElementById("hunger").value;
+                    hunger -= 1;
+                    ent = document.getElementById("entertainment").value;
+                    ent -= 1;
+                    rest = document.getElementById("rest").value;
+                    rest -= 0.5;
+
+                    if(hunger == 0 || ent == 0 || rest == 0)
+                    {
+                        gameOver(hunger, ent, rest);
+                    }
+                    if(hunger == low)
+                    {
+                        alert("Hati-hati, anda mulai kelaparan. Belajar boleh tapi jangan lupa makan!");
+                    }
+                    if(ent == low)
+                    {
+                        alert("Hati-hati, anda mulai stres. Refreshing dikit biar ga suntuk!");
+                    }
+                    if(rest == low)
+                    {
+                        alert("Hati-hati, anda mulai lelah. Jangan lupa beristirahat yang cukup");
+                    }
+                    document.getElementById("hunger").value = hunger;
+                    document.getElementById("entertainment").value = ent;
+                    document.getElementById("rest").value = rest;
+                }
+            }, 1000)
         </script>
     </body>
 </html>
