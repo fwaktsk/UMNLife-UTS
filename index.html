@@ -1,205 +1,413 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>
-            UMNLife 
-        </title>
-        <link title="bootstrapcss" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-        <link rel="alternate stylesheet" title="bootstrapcss" href="bootstrap-5.1.3-dist/css/bootstrap.css" />
-        <link rel="stylesheet" href="style.css" />
-        <script src="bootstrap-5.1.3-dist/js/bootstrap.js"></script>
-    </head>
-    <body>
-        <div id="top">
-            <div id="banner" class="d-block align-items-center justify-content-center">
-                <img width="80" src="images/piala.png" class="img-fluid"/>
-                <br />
-                <div class="text-center">
-                    <h3>Ujian Tengah Semester</h3>
-                </div>
-            </div>
+  <head>
+    <title>UMNLife</title>
+    <link title="bootstrapcss" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous"/>
+    <link rel="alternate stylesheet" title="bootstrapcss" href="bootstrap-5.1.3-dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="style.css" />
+    <script src="bootstrap-5.1.3-dist/js/bootstrap.js"></script>
+  </head>
+  <body>
+    <div id="top">
+      <!-- <audio autoplay loop>
+        <source src="sound/animal_crossing_nh.mp3" type="audio/mp3">
+      </audio> -->
+      <div id="banner" class="d-block align-items-center justify-content-center">
+        <img width="80" src="images/piala.png" class="img-fluid" />
+        <br />
+        <div class="text-center">
+          <h3>Ujian Tengah Semester</h3>
         </div>
-        <hr style="height:2px; opacity:100%;">
-        <!-- progress ama meter ga sama ukurannya (padahal pxnya sama) -->
-        <div id="status">
-            <div class="row md-6">
-                <div class="col">
-                    <label for="hunger">image hunger</label>
-                    <meter id="hunger" min="0" low="15" value="75" optimum="60" high="70" max="100"></meter>
-                </div>
-                <div>
-                    <label for="entertainment">image hunger</label>
-                    <meter id="entertainment" min="0" low="15" value="75" optimum="60" high="70" max="100"></meter>
-                </div>
-            </div>
-            <div class="row md-6">
-                <div class="col">
-                    <label for="rest">image rest</label>
-                    <meter id="rest" min="0" low="15" value="75" optimum="60" high="70" max="100"></meter>
-                </div>
-                <div>
-                    <label for="study">image study</label>
-                    <progress id="study" value="0" max="100"></progress>
-                </div>
-            </div>
-            <div class="col md-6">
-                <h4 id="semester"></h4>
-            </div>
+      </div>
+    </div>
+    <hr style="height: 2px; opacity: 100%" />
+    <!-- progress ama meter ga sama ukurannya (padahal pxnya sama) -->
+    <div id="ui" style="background-image: url('images/living-room-day.jpg'); ">
+      <div id="status">
+        <div class="row md-6">
+          <div class="col md-6">
+            <label for="hunger"><img id="icon" src="images/makan.png"></label>
+            <meter id="hunger" min="0" low="15" value="75" optimum="60" high="70" max="100"></meter>
+          </div>
+          <div class="col md-6">
+            <label for="entertainment"><img id="icon" src="images/controller.png"></label>
+            <meter id="entertainment" min="0" low="15" value="75" optimum="60" high="70" max="100"></meter>
+          </div>
+          <div class="w-100"></div>
+          <div class="col md-6">
+            <label for="rest"><img id="icon" src="images/bobo.png"></label>
+            <meter id="rest" min="0" low="15" value="75" optimum="60" high="70" max="100"></meter>
+          </div>
+          <div class="col md-6">
+            <label for="belajar"><img id="icon" src="images/belajar.png"></label>
+            <progress id="belajar" value="0" max="100"></progress>
+          </div>
+          <div class="w-100"></div>
+          <div class="col text-center md-6">
+            <h4 id="semester"></h4>
+          </div>
         </div>
-        <br>
-        <div id="home">
-            <h2 id="greet">
-            </h2>
-            <h4 id="time">
-                <body onload="showTime()">
-                <div id="jam"></div>
-            </h4>
+      </div>
+      <br />
+      <div id="home">
+        <h2 id="greet"></h2>
+        <h4 id="time">
+          <div id="jam"></div>
+        </h4>
+      </div>
+      <div id="menu" class="d-flex align-items-center justify-content-center">
+        <input type="image" src="images/left_arrow.png" style="width: 5%" onclick="leftArrow()" id="leftArrow"/>
+        <img id="avatar" width="25%" src="images/1.png" />
+        <input type="image" src="images/right_arrow.png" style="width: 5%" onclick="rightArrow()" id="rightArrow"/>
+      </div>
+      <div id="regis" class="container align-items-center align-content-center">
+        <p>Enter your name here...</p>
+  
+        <form>
+          <div class="container form-floating" style="width: 30%">
+            <input type="text" id="nama" class="form-control" placeholder="Nama"/>
+            <label for="nama" style="width: 30%">Nama</label>
+          </div>
+  
+          <button type="button" id="playGame" onclick="startGame()" class="btn btn-primary mt-3 mx-auto d-block">PLAY</button>
+        </form>
+      </div>
+      <div id="actions" class="container align-content-center align-items-center">
+        <div class="row md-6">
+          <div class="col">
+            <button type="button" id="eat" onclick="eat()" class="btn btn-primary mt-3 mx-auto d-block">Makan</button>
+          </div>
+          <div class="col">
+            <button type="button" id="sleep" onclick="sleep()" class="btn btn-primary mt-3 mx-auto d-block">Tidur</button>
+          </div>
         </div>
-        <div id="menu" class="d-flex align-items-center justify-content-center">
-            <input type="image" src="images/left_arrow.png" style="width: 5%;" onclick="leftArrow()" id="leftArrow" />
-            <img id="avatar" width="25%" src="images/1.png">
-            <input type="image" src="images/right_arrow.png" style="width: 5%;" onclick="rightArrow()" id="rightArrow" />
+        <div class="row md-6">
+          <div class="col">
+            <button type="button" id="play" onclick="play()" class="btn btn-primary mt-3 mx-auto d-block">Main</button>
+          </div>
+          <div class="col">
+            <button type="button" id="study" onclick="learn()" class="btn btn-primary mt-3 mx-auto d-block">Belajar</button>
+          </div>
         </div>
-        <div id="regis" class="container align-items-center align-content-center">
-            <p>Enter your name here...</p>
-            
-            <form>
-                <div class="container form-floating" style="width: 30%;">
-                    <input type="text" id="nama" class="form-control" placeholder="Nama" />
-                    <label for="nama" style="width: 30%;">Nama</label>
-                </div>
-                
-                <button type="button" id="playGame" onclick="startGame()" class="btn btn-primary mt-3 mx-auto d-block">PLAY</button>
-            </form>
-        </div>
-        <div id="actions" class="container align-content-center align-items-center">
+      </div>
+    </div>
 
-        </div>
+    <script type="text/javascript">
+      var game = 0;
+      var min = 0;
+      var low = 15;
+      var high = 75;
+      var max = 100;
+      var h = 7;
+      var m = 0;
+      var d = 0;
+      var st = 1;
+      var sem = 1;
+      
+      var name;
+      
+      function eat()
+      {
+        hunger = document.getElementById("hunger").value;
+        if(hunger+1<100)
+        {
+          initbg = document.getElementById("ui").getAttribute("style");
+          if(h >= 7 && h <= 18){  
+            document.getElementById("ui").setAttribute("style", "background-image: url('images/kitchen-day.jpg')");
+          }else if(h >= 19 || h <= 6){ 
+            document.getElementById("ui").setAttribute("style", "background-image: url('images/kitchen-night.jpg')");
+          }
+          document.getElementById("eat").disabled = true;
+          document.getElementById("sleep").disabled = true;
+          document.getElementById("play").disabled = true;
+          document.getElementById("study").disabled = true;
+          hunger += 1;
+          document.getElementById("hunger").value = hunger;
+          setTimeout(function()
+          {
+            document.getElementById("eat").disabled = false;
+            document.getElementById("sleep").disabled = false;
+            document.getElementById("play").disabled = false;
+            document.getElementById("study").disabled = false;
+            document.getElementById("ui").setAttribute("style", initbg);
+          }, 10000);
+        }
+        else
+        {
+          alert(name + "sudah kenyang. Nanti malah muntah");
+        }
+      }
 
-        <script type="text/javascript">
-            var game = 0;
-            var low = 15;
-            var high = 75;
+      function sleep()
+      {
+        rest = document.getElementById("rest").value;
+        if(rest+1<100)
+        {
+          initbg = document.getElementById("ui").getAttribute("style");
+          if(h >= 7 && h <= 18){
+            document.getElementById("ui").setAttribute("style", "background-image: url('images/bed-day.jpg')");
+          }else if(h >= 19 || h <= 6){ 
+            document.getElementById("ui").setAttribute("style", "background-image: url('images/bed-night.jpg')");
+          }
+          document.getElementById("eat").disabled = true;
+          document.getElementById("sleep").disabled = true;
+          document.getElementById("play").disabled = true;
+          document.getElementById("study").disabled = true;
+          rest += 1;
+          hunger -= 10;
+          // h += 2;
+          document.getElementById("rest").value = rest;
+          setTimeout(function()
+          {
+            document.getElementById("eat").disabled = false;
+            document.getElementById("sleep").disabled = false;
+            document.getElementById("play").disabled = false;
+            document.getElementById("study").disabled = false;
+            document.getElementById("ui").setAttribute("style", initbg);
+          }, 10000);
+        }
+      }
+      
+      function play()
+      {
+        ent = document.getElementById("entertainment").value;
+        if(ent+1 < 100)
+        {
+          initbg = document.getElementById("ui").getAttribute("style");
+          if (h >= 7 && h <= 18) {
+            document.getElementById("ui").setAttribute("style", "background-image: url('images/play-day.jpg')");
+          } else if (h >= 19 || h <= 6) {
+            document.getElementById("ui").setAttribute("style", "background-image: url('images/play-night.jpg')");
+          }
+          document.getElementById("eat").disabled = true;
+          document.getElementById("sleep").disabled = true;
+          document.getElementById("play").disabled = true;
+          document.getElementById("study").disabled = true;
+          ent += 1;
+          document.getElementById("entertainment").value = ent;
+          setTimeout(function()
+          {
+            document.getElementById("eat").disabled = false;
+            document.getElementById("sleep").disabled = false;
+            document.getElementById("play").disabled = false;
+            document.getElementById("study").disabled = false;
+            document.getElementById("ui").setAttribute("style", initbg);
+          }, 10000);
+        }
+      }
 
-            var name;
-            function startGame()
-            {
-                name = document.getElementById("nama").value;
-                if(name != '')
-                {
-                    document.getElementById("greet").innerHTML = "<strong>Good Day, "+name+"</strong>";
-                    document.getElementById("status").style.display = "flex";
-                    document.getElementById("leftArrow").style.display = "none";
-                    document.getElementById("rightArrow").style.display = "none";
-                    document.getElementById("regis").style.display = "none";
-                    game = 1;
-                    document.getElementById("semester").innerHTML = "Semester 1";
-                    document.getElementById("actions").style.display = "inline";
-                }
-            }
-            function leftArrow()
-            {
-                img = document.getElementById("avatar");
-                e = img.getAttribute("src");
-                path = e.split("/");
-                index = path[1].split(".",1);
-                if(index==2)
-                {
-                    document.getElementById("leftArrow").style.visibility = "hidden";
-                }
-                index--;
-                newPath = "images/"+index+".png";
-                document.getElementById("avatar").setAttribute("src",newPath);
-                if(index==7)
-                {
-                    document.getElementById("rightArrow").style.visibility = "visible";
-                }
-            }
-            function rightArrow()
-            {
-                img = document.getElementById("avatar");
-                e = img.getAttribute("src");
-                path = e.split("/");
-                index = path[1].split(".",1);
-                if(index==7)
-                {
-                    document.getElementById("rightArrow").style.visibility = "hidden";
-                }
-                index++;
-                newPath = "images/"+index+".png";
-                document.getElementById("avatar").setAttribute("src",newPath);
-                if(index==2)
-                {
-                    document.getElementById("leftArrow").style.visibility = "visible";
-                }
-            }
-            function showTime() {
-                const today = new Date();
-                let h = today.getHours();
-                let m = today.getMinutes();
-                let s = today.getSeconds();
-                m = checkTime(s);
-                document.getElementById('jam').innerHTML =  h + ":" + m;
-                setTimeout(showTime, 1000);
-            }
+      function learn()
+      {
+        initbg = document.getElementById("ui").getAttribute("style");
+          if (h >= 7 && h <= 18) {
+              document.getElementById("ui").setAttribute("style", "background-image: url('images/study-day.jpg')");
+          } else if (h >= 19 || h <= 6) {
+              document.getElementById("ui").setAttribute("style", "background-image: url('images/study-night.jpg')");
+        }
+        study = document.getElementById("belajar").value;
+        study += st;
+        document.getElementById("belajar").value = study;
+        if(study == 100)
+        {
+          document.getElementById("belajar").value = 0;
+          st /= 2;
+          sem += 1;
+          document.getElementById("semester").innerHTML = "Semester " + sem;
+        }
+        setTimeout(function()
+          {
+            document.getElementById("eat").disabled = false;
+            document.getElementById("sleep").disabled = false;
+            document.getElementById("play").disabled = false;
+            document.getElementById("study").disabled = false;
+            document.getElementById("ui").setAttribute("style", initbg);
+          }, 10000);
+      }
+      
+      function startGame() {
+        name = document.getElementById("nama").value;
+        if (name != "") {
+          game = 1;
+          document.getElementById("greet").innerHTML = "<strong>Good Morning, " + name + "</strong>";
+          document.getElementById("status").style.display = "flex";
+          document.getElementById("leftArrow").style.display = "none";
+          document.getElementById("rightArrow").style.display = "none";
+          document.getElementById("regis").style.display = "none";
+          document.getElementById("jam").innerHTML = "0" + h + ":0" + m;
+          document.getElementById("actions").style.display = "block";
+          document.getElementById("semester").innerHTML = "Semester " + sem;
+        }
+      }
 
-            function checkTime(i) {
-                if (i < 10) {i = "0" + i};
-                return i;
-            }
+      function leftArrow() {
+        img = document.getElementById("avatar");
+        e = img.getAttribute("src");
+        path = e.split("/");
+        index = path[1].split(".", 1);
+        if (index == 2) {
+          document.getElementById("leftArrow").style.visibility = "hidden";
+        }
+        index--;
+        newPath = "images/" + index + ".png";
+        document.getElementById("avatar").setAttribute("src", newPath);
+        if (index == 7) {
+          document.getElementById("rightArrow").style.visibility = "visible";
+        }
+      }
 
-            function gameOver(hunger, ent, rest)
-            {
-                clearInterval(statbar);
-                if(hunger == 0)
-                {
-                    alert("GAME OVER... "+ name + " meninggal akibat penyakit dari kelaparan :(((");
-                    //tampilan mati kelaparan
-                }
-                else if(ent == 0)
-                {
-                    alert("GAME OVER... "+ name + " jadi gila akibat stress dan kurang hiburan :(((");
-                    //tampilan stress dan jadi gila
-                }
-                else if(rest == 0)
-                {
-                    alert("GAME OVER... "+ name + " mati terkena serangan jantung karena kecapean :(((");
-                    //tampilan mati kecapean
-                }
-            }
+      function rightArrow() {
+        img = document.getElementById("avatar");
+        e = img.getAttribute("src");
+        path = e.split("/");
+        index = path[1].split(".", 1);
+        if (index == 7) {
+          document.getElementById("rightArrow").style.visibility = "hidden";
+        }
+        index++;
+        newPath = "images/" + index + ".png";
+        document.getElementById("avatar").setAttribute("src", newPath);
+        if (index == 2) {
+          document.getElementById("leftArrow").style.visibility = "visible";
+        }
+      }
 
-            statbar = setInterval(function ()
-            {
-                if(game != 0)
-                {
-                    hunger = document.getElementById("hunger").value;
-                    hunger -= 1;
-                    ent = document.getElementById("entertainment").value;
-                    ent -= 1;
-                    rest = document.getElementById("rest").value;
-                    rest -= 0.5;
+      function gameOver(hunger, ent, rest) {
+        clearInterval(statbar);
+        clearInterval(showTime);
+        document.getElementById("eat").disabled = true;
+        document.getElementById("sleep").disabled = true;
+        document.getElementById("play").disabled = true;
+        document.getElementById("study").disabled = true;
+        if (hunger == min)
+        {
+          alert("GAME OVER... " + name + " meninggal akibat tidak dapat mendapat bansos untuk makan :(((");
+          img = document.getElementById("avatar");
+          e = img.getAttribute("src");
+          path = e.split("/");
+          index = path[1].split(".", 1);
+          newPath = "images/" + index + "d.png";
+          document.getElementById("avatar").setAttribute("src", newPath);
+        }
+        else if (ent == min)
+        {
+          alert("GAME OVER... " + name + " jadi gila akibat stress dan kurang hiburan :(((");
+          img = document.getElementById("avatar");
+          e = img.getAttribute("src");
+          path = e.split("/");
+          index = path[1].split(".", 1);
+          newPath = "images/" + index + "d.png";
+          document.getElementById("avatar").setAttribute("src", newPath);
+        }
+        else if (rest == min)
+        {
+          alert("GAME OVER... " + name + " mati terkena serangan jantung karena kecapean :(((");
+          img = document.getElementById("avatar");
+          e = img.getAttribute("src");
+          path = e.split("/");
+          index = path[1].split(".", 1);
+          newPath = "images/" + index + "d.png";
+          document.getElementById("avatar").setAttribute("src", newPath);
+        }
+      }
 
-                    if(hunger == 0 || ent == 0 || rest == 0)
-                    {
-                        gameOver(hunger, ent, rest);
-                    }
-                    if(hunger == low)
-                    {
-                        alert("Hati-hati, anda mulai kelaparan. Belajar boleh tapi jangan lupa makan!");
-                    }
-                    if(ent == low)
-                    {
-                        alert("Hati-hati, anda mulai stres. Refreshing dikit biar ga suntuk!");
-                    }
-                    if(rest == low)
-                    {
-                        alert("Hati-hati, anda mulai lelah. Jangan lupa beristirahat yang cukup");
-                    }
-                    document.getElementById("hunger").value = hunger;
-                    document.getElementById("entertainment").value = ent;
-                    document.getElementById("rest").value = rest;
-                }
-            }, 1000)
-        </script>
-    </body>
+      showTime = setInterval(function ()
+      {
+        if (game != 0)
+        {
+          m = m + 1;
+          if (m >= 60)
+          {
+            m -= 60;
+            h += 1;
+          }
+          if (h >= 24)
+          {
+            h -= 24;
+            d += 1;
+          }
+
+          if(h>=6 && h<=10)
+          {
+            document.getElementById("ui").setAttribute("style", "background-image: url('images/living-room-day.jpg')");
+            document.getElementById("greet").innerHTML = "<strong>Good Morning, " + name + "</strong>";
+          }
+          else if(h>10 && h<=15)
+          {
+            document.getElementById("ui").setAttribute("style", "background-image: url('images/living-room-day.jpg')");
+            document.getElementById("greet").innerHTML = "<strong>Good Day, " + name + "</strong>";
+          }
+          else if(h>15 && h<=18)
+          {
+            document.getElementById("ui").setAttribute("style", "background-image: url('images/living-room-day.jpg')");
+            document.getElementById("greet").innerHTML = "<strong>Good Afternoon, " + name + "</strong>";
+          }
+          else if(h>18 && h<=21)
+          {
+            document.getElementById("ui").setAttribute("style", "background-image: url('images/living-room-night.jpg')");
+            document.getElementById("greet").innerHTML = "<strong>Good Evening, " + name + "</strong>";
+          }
+          else if((h>21 && h<24)||h<6)
+          {
+            document.getElementById("ui").setAttribute("style", "background-image: url('images/living-room-night.jpg')");
+            document.getElementById("greet").innerHTML = "<strong>Good Night, " + name + "</strong>";
+          }
+
+          if (m < 10 && h < 10)
+          {
+            document.getElementById("jam").innerHTML = "0" + h + ":0" + m;
+          }
+          else if (m < 10 && h >= 10)
+          {
+            document.getElementById("jam").innerHTML = h + ":0" + m;
+          }
+          else if (m >= 10 && h < 10)
+          {
+            document.getElementById("jam").innerHTML = "0" + h + ":" + m;
+          }
+          else if (m >= 10 && h >= 10)
+          {
+            document.getElementById("jam").innerHTML = h + ":" + m;
+          }
+        }
+      }, 20);
+
+      statbar = setInterval(function () {
+        if (game != 0) {
+          hunger = document.getElementById("hunger").value;
+          hunger -= 0.5;
+          ent = document.getElementById("entertainment").value;
+          ent -= 1;
+          rest = document.getElementById("rest").value;
+          rest -= 0.5;
+          study = document.getElementById("belajar").value;
+          if (d == 2 && study < 50) {
+            alert("Hati-hati, anda terancam dropout");
+          }
+
+          if (hunger == min || ent == min || rest == min) {
+            gameOver(hunger, ent, rest);
+          }
+          if (hunger == low) {
+            alert(
+              "Hati-hati, anda mulai kelaparan. Belajar boleh tapi jangan lupa makan!"
+            );
+          }
+          if (ent == low) {
+            alert(
+              "Hati-hati, anda mulai stres. Refreshing dikit biar ga suntuk!"
+            );
+          }
+          if (rest == low) {
+            alert(
+              "Hati-hati, anda mulai lelah. Jangan lupa beristirahat yang cukup"
+            );
+          }
+          document.getElementById("hunger").value = hunger;
+          document.getElementById("entertainment").value = ent;
+          document.getElementById("rest").value = rest;
+        }
+      }, 2000);
+
+    </script>
+  </body>
 </html>

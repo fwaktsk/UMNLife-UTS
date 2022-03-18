@@ -4,6 +4,11 @@ body
     font-family: arial;
 }
 
+#icon
+{
+    width: 20%;
+}
+
 #banner
 {
     margin-top: 20px;
@@ -15,6 +20,13 @@ body
     margin: auto;
 }
 
+#ui
+{
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    background-image: none;
+}
 #regis
 {
     text-align: center;
@@ -24,10 +36,11 @@ body
 {
     display: none;
     border: 1px solid;
-    height: 200px;
+    height: 300px;
     width: 50%;
     margin: auto;
     padding: 10px;
+    align-content: center;
 }
 
 #status meter
@@ -67,4 +80,15 @@ body
 #actions
 {
     display: none;
+}
+
+#actions button
+{
+    width: 100px;
+}
+
+.bg{
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
 }
