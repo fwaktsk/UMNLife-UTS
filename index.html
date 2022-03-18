@@ -46,30 +46,33 @@
           <div class="col text-center md-6">
             <h4 id="semester"></h4>
           </div>
+          <div class="w-100"></div>
+          <div id="home">
+            <h2 id="greet"></h2>
+            <h4 id="time">
+              <div id="jam"></div>
+            </h4>
+          </div>
         </div>
       </div>
       <br />
-      <div id="home">
-        <h2 id="greet"></h2>
-        <h4 id="time">
-          <div id="jam"></div>
-        </h4>
-      </div>
       <div id="menu" class="d-flex align-items-center justify-content-center">
         <input type="image" src="images/left_arrow.png" style="width: 5%" onclick="leftArrow()" id="leftArrow"/>
         <img id="avatar" width="25%" src="images/1.png" />
         <input type="image" src="images/right_arrow.png" style="width: 5%" onclick="rightArrow()" id="rightArrow"/>
       </div>
       <div id="regis" class="container align-items-center align-content-center">
-        <p>Enter your name here...</p>
+        <div id="nameText" style="background-color: gainsboro; border-radius: 10px; box-shadow: 5px 5px rgba(0, 0, 0, 0.4); width: 20%; margin: auto;">
+          <p>Enter your name here...</p>
+        </div>
   
         <form>
           <div class="container form-floating" style="width: 30%">
-            <input type="text" id="nama" class="form-control" placeholder="Nama"/>
+            <input type="text" id="nama" class="form-control" placeholder="Nama" style="background-color: gainsboro; border-radius: 10px; box-shadow: 5px 5px rgba(0, 0, 0, 0.4);" />
             <label for="nama" style="width: 30%">Nama</label>
           </div>
   
-          <button type="button" id="playGame" onclick="startGame()" class="btn btn-primary mt-3 mx-auto d-block">PLAY</button>
+          <button type="button" id="playGame" onclick="startGame()" class="btn btn-primary mt-3 mx-auto d-block" style="border-radius: 10px; box-shadow: 5px 5px rgba(0, 0, 0, 0.4);">PLAY</button>
         </form>
       </div>
       <div id="actions" class="container align-content-center align-items-center">
@@ -90,6 +93,11 @@
           </div>
         </div>
       </div>
+      <div id="refresh">
+        <button type="button" class="btn btn-primary mt-3 mx-auto d-block" onclick="refresh()">
+          <img src="images/refresh.png" onclick="refresh()">
+        </button>
+      </div>
     </div>
 
     <script type="text/javascript">
@@ -100,18 +108,22 @@
       var max = 100;
       var h = 7;
       var m = 0;
-      var d = 0;
+      var d = 1;
       var st = 1;
       var sem = 1;
+      var initbg;
       
       var name;
       
+      function refresh()
+      {
+        location.reload();
+      }
       function eat()
       {
         hunger = document.getElementById("hunger").value;
         if(hunger+1<100)
         {
-          initbg = document.getElementById("ui").getAttribute("style");
           if(h >= 7 && h <= 18){  
             document.getElementById("ui").setAttribute("style", "background-image: url('images/kitchen-day.jpg')");
           }else if(h >= 19 || h <= 6){ 
@@ -123,6 +135,15 @@
           document.getElementById("study").disabled = true;
           hunger += 1;
           document.getElementById("hunger").value = hunger;
+          if(h==5 && m>=20)
+          {
+            initbg = "background-image: url('images/living-room-day.jpg')";
+          }
+          if(h==18 && m>=20)
+          {
+            initbg = "background-image: url('images/living-room-night.jpg')";
+          }
+          setTimeout(function(){m += 30;},2500);
           setTimeout(function()
           {
             document.getElementById("eat").disabled = false;
@@ -130,11 +151,11 @@
             document.getElementById("play").disabled = false;
             document.getElementById("study").disabled = false;
             document.getElementById("ui").setAttribute("style", initbg);
-          }, 10000);
+          }, 3000);
         }
         else
         {
-          alert(name + "sudah kenyang. Nanti malah muntah");
+          alert(name + " sudah kenyang. Nanti malah muntah");
         }
       }
 
@@ -143,7 +164,6 @@
         rest = document.getElementById("rest").value;
         if(rest+1<100)
         {
-          initbg = document.getElementById("ui").getAttribute("style");
           if(h >= 7 && h <= 18){
             document.getElementById("ui").setAttribute("style", "background-image: url('images/bed-day.jpg')");
           }else if(h >= 19 || h <= 6){ 
@@ -155,8 +175,16 @@
           document.getElementById("study").disabled = true;
           rest += 1;
           hunger -= 10;
-          // h += 2;
           document.getElementById("rest").value = rest;
+          if(h>=3 && h<=5)
+          {
+            initbg = "background-image: url('images/living-room-day.jpg')";
+          }
+          if(h>=16 && h <=18)
+          {
+            initbg = "background-image: url('images/living-room-night.jpg')";
+          }
+          setTimeout(function(){h += 3;},2500);
           setTimeout(function()
           {
             document.getElementById("eat").disabled = false;
@@ -164,7 +192,7 @@
             document.getElementById("play").disabled = false;
             document.getElementById("study").disabled = false;
             document.getElementById("ui").setAttribute("style", initbg);
-          }, 10000);
+          }, 3000);
         }
       }
       
@@ -173,7 +201,6 @@
         ent = document.getElementById("entertainment").value;
         if(ent+1 < 100)
         {
-          initbg = document.getElementById("ui").getAttribute("style");
           if (h >= 7 && h <= 18) {
             document.getElementById("ui").setAttribute("style", "background-image: url('images/play-day.jpg')");
           } else if (h >= 19 || h <= 6) {
@@ -185,6 +212,15 @@
           document.getElementById("study").disabled = true;
           ent += 1;
           document.getElementById("entertainment").value = ent;
+          if(h==5)
+          {
+            initbg = "background-image: url('images/living-room-day.jpg')";
+          }
+          if(h==18)
+          {
+            initbg = "background-image: url('images/living-room-night.jpg')";
+          }
+          setTimeout(function(){h += 1;},2500);
           setTimeout(function()
           {
             document.getElementById("eat").disabled = false;
@@ -192,28 +228,45 @@
             document.getElementById("play").disabled = false;
             document.getElementById("study").disabled = false;
             document.getElementById("ui").setAttribute("style", initbg);
-          }, 10000);
+          }, 3000);
         }
       }
 
       function learn()
       {
-        initbg = document.getElementById("ui").getAttribute("style");
-          if (h >= 7 && h <= 18) {
-              document.getElementById("ui").setAttribute("style", "background-image: url('images/study-day.jpg')");
-          } else if (h >= 19 || h <= 6) {
-              document.getElementById("ui").setAttribute("style", "background-image: url('images/study-night.jpg')");
+        document.getElementById("eat").disabled = true;
+        document.getElementById("sleep").disabled = true;
+        document.getElementById("play").disabled = true;
+        document.getElementById("study").disabled = true;
+        if (h >= 7 && h <= 18) {
+            document.getElementById("ui").setAttribute("style", "background-image: url('images/study-day.jpg')");
+        } else if (h >= 19 || h <= 6) {
+            document.getElementById("ui").setAttribute("style", "background-image: url('images/study-night.jpg')");
         }
         study = document.getElementById("belajar").value;
         study += st;
         document.getElementById("belajar").value = study;
+        if(h>=4 && h<=5)
+        {
+          initbg = "background-image: url('images/living-room-day.jpg')";
+        }
+        if(h>=17 && h <= 18)
+        {
+          initbg = "background-image: url('images/living-room-night.jpg')";
+        }
         if(study == 100)
         {
+          if(sem == 8)
+          {
+            gameOver();
+          }
           document.getElementById("belajar").value = 0;
           st /= 2;
           sem += 1;
+          d = 0;
           document.getElementById("semester").innerHTML = "Semester " + sem;
         }
+        setTimeout(function(){h += 2;},2500);
         setTimeout(function()
           {
             document.getElementById("eat").disabled = false;
@@ -221,7 +274,7 @@
             document.getElementById("play").disabled = false;
             document.getElementById("study").disabled = false;
             document.getElementById("ui").setAttribute("style", initbg);
-          }, 10000);
+          }, 3000);
       }
       
       function startGame() {
@@ -271,14 +324,16 @@
         }
       }
 
-      function gameOver(hunger, ent, rest) {
-        clearInterval(statbar);
-        clearInterval(showTime);
+      function gameOver(hunger, ent, rest, study) {
         document.getElementById("eat").disabled = true;
         document.getElementById("sleep").disabled = true;
         document.getElementById("play").disabled = true;
         document.getElementById("study").disabled = true;
-        if (hunger == min)
+        document.getElementById("refresh").style.visibility = "visible";
+        clearInterval(doalert);
+        clearInterval(statbar);
+        clearInterval(showTime);
+        if (hunger <= min)
         {
           alert("GAME OVER... " + name + " meninggal akibat tidak dapat mendapat bansos untuk makan :(((");
           img = document.getElementById("avatar");
@@ -288,7 +343,7 @@
           newPath = "images/" + index + "d.png";
           document.getElementById("avatar").setAttribute("src", newPath);
         }
-        else if (ent == min)
+        else if (ent <= min)
         {
           alert("GAME OVER... " + name + " jadi gila akibat stress dan kurang hiburan :(((");
           img = document.getElementById("avatar");
@@ -298,7 +353,7 @@
           newPath = "images/" + index + "d.png";
           document.getElementById("avatar").setAttribute("src", newPath);
         }
-        else if (rest == min)
+        else if (rest <= min)
         {
           alert("GAME OVER... " + name + " mati terkena serangan jantung karena kecapean :(((");
           img = document.getElementById("avatar");
@@ -307,6 +362,20 @@
           index = path[1].split(".", 1);
           newPath = "images/" + index + "d.png";
           document.getElementById("avatar").setAttribute("src", newPath);
+        }
+        else if(study < max)
+        {
+          alert("GAME OVER... " + name + " kena DO sama UMN :(((");
+          img = document.getElementById("avatar");
+          e = img.getAttribute("src");
+          path = e.split("/");
+          index = path[1].split(".", 1);
+          newPath = "images/" + index + "d.png";
+          document.getElementById("avatar").setAttribute("src", newPath);
+        }
+        else if(sem == 8)
+        {
+          alert("YOU WIN!!! " + name + " berhasil lulus dari UMN :DDD");
         }
       }
 
@@ -328,64 +397,73 @@
 
           if(h>=6 && h<=10)
           {
-            document.getElementById("ui").setAttribute("style", "background-image: url('images/living-room-day.jpg')");
+            initbg = "background-image: url('images/living-room-day.jpg')";
             document.getElementById("greet").innerHTML = "<strong>Good Morning, " + name + "</strong>";
           }
           else if(h>10 && h<=15)
           {
-            document.getElementById("ui").setAttribute("style", "background-image: url('images/living-room-day.jpg')");
+            initbg = "background-image: url('images/living-room-day.jpg')";
             document.getElementById("greet").innerHTML = "<strong>Good Day, " + name + "</strong>";
           }
           else if(h>15 && h<=18)
           {
-            document.getElementById("ui").setAttribute("style", "background-image: url('images/living-room-day.jpg')");
+            initbg = "background-image: url('images/living-room-day.jpg')";
             document.getElementById("greet").innerHTML = "<strong>Good Afternoon, " + name + "</strong>";
           }
           else if(h>18 && h<=21)
           {
-            document.getElementById("ui").setAttribute("style", "background-image: url('images/living-room-night.jpg')");
+            initbg = "background-image: url('images/living-room-night.jpg')";
             document.getElementById("greet").innerHTML = "<strong>Good Evening, " + name + "</strong>";
           }
           else if((h>21 && h<24)||h<6)
           {
-            document.getElementById("ui").setAttribute("style", "background-image: url('images/living-room-night.jpg')");
+            initbg = "background-image: url('images/living-room-night.jpg')";
             document.getElementById("greet").innerHTML = "<strong>Good Night, " + name + "</strong>";
+          }
+          if((h == 19 && m <= 10)||(h == 6 && m <= 10))
+          {
+            document.getElementById("ui").setAttribute("style", initbg);
           }
 
           if (m < 10 && h < 10)
           {
-            document.getElementById("jam").innerHTML = "0" + h + ":0" + m;
+            document.getElementById("jam").innerHTML = "Day: "+ d + "<br/>0" + h + ":0" + m;
           }
           else if (m < 10 && h >= 10)
           {
-            document.getElementById("jam").innerHTML = h + ":0" + m;
+            document.getElementById("jam").innerHTML = "Day: "+ d + "<br/>" + h + ":0" + m;
           }
           else if (m >= 10 && h < 10)
           {
-            document.getElementById("jam").innerHTML = "0" + h + ":" + m;
+            document.getElementById("jam").innerHTML = "Day: "+ d + "<br/>0" + h + ":" + m;
           }
           else if (m >= 10 && h >= 10)
           {
-            document.getElementById("jam").innerHTML = h + ":" + m;
+            document.getElementById("jam").innerHTML = "Day: "+ d + "<br/>" + h + ":" + m;
           }
         }
-      }, 20);
+      }, 500);
+
+      doalert = setInterval(function()
+      {
+        study = document.getElementById("belajar").value;
+        if (d % 2 == 0 && study/d <= 20) {
+            alert("Hati-hati, anda terancam dropout");
+          }
+      },15000)
 
       statbar = setInterval(function () {
         if (game != 0) {
           hunger = document.getElementById("hunger").value;
-          hunger -= 0.5;
+          hunger -= 1;
           ent = document.getElementById("entertainment").value;
-          ent -= 1;
+          ent -= 2;
           rest = document.getElementById("rest").value;
-          rest -= 0.5;
+          rest -= 1;
           study = document.getElementById("belajar").value;
-          if (d == 2 && study < 50) {
-            alert("Hati-hati, anda terancam dropout");
-          }
 
-          if (hunger == min || ent == min || rest == min) {
-            gameOver(hunger, ent, rest);
+          if (hunger <= min || ent <= min || rest <= min || (d == 7 && study<100)) {
+            gameOver(hunger, ent, rest, study);
           }
           if (hunger == low) {
             alert(
@@ -406,7 +484,7 @@
           document.getElementById("entertainment").value = ent;
           document.getElementById("rest").value = rest;
         }
-      }, 2000);
+      }, 5000);
 
     </script>
   </body>
