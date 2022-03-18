@@ -5,8 +5,11 @@ UMNLife adalah project simulasi kehidupan mahasiswa yang melatih mood, time, and
 ## Kelas: IF231-F
 ### Anggota Kelompok:
 Steven Vincent Hendrawan (00000043664)
+
 Meitio Susanto (00000044843)
+
 Moch. Bima (00000045997)
+
 Dwi Rianto (00000047842)
 
 ## HOW TO PLAY
