@@ -7,22 +7,18 @@
     <link rel="stylesheet" href="style.css" />
     <script src="bootstrap-5.1.3-dist/js/bootstrap.js"></script>
   </head>
-  <body>
+  <body id="ui" style="background-image: url('images/living-room-day.jpg');">
     <div id="top">
-      <!-- <audio autoplay loop>
-        <source src="sound/animal_crossing_nh.mp3" type="audio/mp3">
-      </audio> -->
       <div id="banner" class="d-block align-items-center justify-content-center">
         <img width="80" src="images/piala.png" class="img-fluid" />
         <br />
         <div class="text-center">
           <h3>Ujian Tengah Semester</h3>
         </div>
+        <hr style="height: 2px; opacity: 100%" />
       </div>
     </div>
-    <hr style="height: 2px; opacity: 100%" />
     <!-- progress ama meter ga sama ukurannya (padahal pxnya sama) -->
-    <div id="ui" style="background-image: url('images/living-room-day.jpg'); ">
       <div id="status">
         <div class="row md-6">
           <div class="col md-6">
@@ -124,6 +120,12 @@
         hunger = document.getElementById("hunger").value;
         if(hunger+1<100)
         {
+          img = document.getElementById("avatar");
+          e = img.getAttribute("src");
+          path = e.split("/");
+          index = path[1].split(".", 1);
+          newPath = "images/" + index + "-eat.gif";
+          document.getElementById("avatar").setAttribute("src", newPath);
           if(h >= 7 && h <= 18){  
             document.getElementById("ui").setAttribute("style", "background-image: url('images/kitchen-day.jpg')");
           }else if(h >= 19 || h <= 6){ 
@@ -133,7 +135,7 @@
           document.getElementById("sleep").disabled = true;
           document.getElementById("play").disabled = true;
           document.getElementById("study").disabled = true;
-          hunger += 1;
+          hunger += 5;
           document.getElementById("hunger").value = hunger;
           if(h==5 && m>=20)
           {
@@ -151,6 +153,8 @@
             document.getElementById("play").disabled = false;
             document.getElementById("study").disabled = false;
             document.getElementById("ui").setAttribute("style", initbg);
+            console.log(img);
+            document.getElementById("avatar").setAttribute("src", e);
           }, 3000);
         }
         else
@@ -162,8 +166,15 @@
       function sleep()
       {
         rest = document.getElementById("rest").value;
+        hunger = document.getElementById("hunger").value;
         if(rest+1<100)
         {
+          img = document.getElementById("avatar");
+          e = img.getAttribute("src");
+          path = e.split("/");
+          index = path[1].split(".", 1);
+          newPath = "images/" + index + "-sleep.gif";
+          document.getElementById("avatar").setAttribute("src", newPath);
           if(h >= 7 && h <= 18){
             document.getElementById("ui").setAttribute("style", "background-image: url('images/bed-day.jpg')");
           }else if(h >= 19 || h <= 6){ 
@@ -173,9 +184,10 @@
           document.getElementById("sleep").disabled = true;
           document.getElementById("play").disabled = true;
           document.getElementById("study").disabled = true;
-          rest += 1;
-          hunger -= 10;
+          rest += 7;
+          hunger -= 5;
           document.getElementById("rest").value = rest;
+          document.getElementById("hunger").value = hunger;
           if(h>=3 && h<=5)
           {
             initbg = "background-image: url('images/living-room-day.jpg')";
@@ -192,6 +204,7 @@
             document.getElementById("play").disabled = false;
             document.getElementById("study").disabled = false;
             document.getElementById("ui").setAttribute("style", initbg);
+            document.getElementById("avatar").setAttribute("src", e);
           }, 3000);
         }
       }
@@ -201,17 +214,30 @@
         ent = document.getElementById("entertainment").value;
         if(ent+1 < 100)
         {
+          img = document.getElementById("avatar");
+          e = img.getAttribute("src");
+          path = e.split("/");
+          index = path[1].split(".", 1);
           if (h >= 7 && h <= 18) {
             document.getElementById("ui").setAttribute("style", "background-image: url('images/play-day.jpg')");
+            newPath = "images/" + index + "-play-day.gif";
           } else if (h >= 19 || h <= 6) {
             document.getElementById("ui").setAttribute("style", "background-image: url('images/play-night.jpg')");
+            newPath = "images/" + index + "-play-night.gif";
           }
+          document.getElementById("avatar").setAttribute("src", newPath);
           document.getElementById("eat").disabled = true;
           document.getElementById("sleep").disabled = true;
           document.getElementById("play").disabled = true;
           document.getElementById("study").disabled = true;
-          ent += 1;
+          rest = document.getElementById("rest").value;
+          hunger = document.getElementById("hunger").value;
+          ent += 9;
+          rest -= 5;
+          hunger -= 10;
+          document.getElementById("rest").value = rest;
           document.getElementById("entertainment").value = ent;
+          document.getElementById("hunger").value = hunger;
           if(h==5)
           {
             initbg = "background-image: url('images/living-room-day.jpg')";
@@ -228,12 +254,19 @@
             document.getElementById("play").disabled = false;
             document.getElementById("study").disabled = false;
             document.getElementById("ui").setAttribute("style", initbg);
+            document.getElementById("avatar").setAttribute("src", e);
           }, 3000);
         }
       }
 
       function learn()
       {
+        img = document.getElementById("avatar");
+        e = img.getAttribute("src");
+        path = e.split("/");
+        index = path[1].split(".", 1);
+        newPath = "images/" + index + "-study.gif";
+        document.getElementById("avatar").setAttribute("src", newPath);
         document.getElementById("eat").disabled = true;
         document.getElementById("sleep").disabled = true;
         document.getElementById("play").disabled = true;
@@ -244,7 +277,16 @@
             document.getElementById("ui").setAttribute("style", "background-image: url('images/study-night.jpg')");
         }
         study = document.getElementById("belajar").value;
+        ent = document.getElementById("entertainment").value;
+        rest = document.getElementById("rest").value;
+        hunger = document.getElementById("hunger").value;
         study += st;
+        ent -= 10;
+        rest -= 5;
+        hunger -= 5;
+        document.getElementById("rest").value = rest;
+        document.getElementById("entertainment").value = ent;
+        document.getElementById("hunger").value = hunger;
         document.getElementById("belajar").value = study;
         if(h>=4 && h<=5)
         {
@@ -274,6 +316,7 @@
             document.getElementById("play").disabled = false;
             document.getElementById("study").disabled = false;
             document.getElementById("ui").setAttribute("style", initbg);
+            document.getElementById("avatar").setAttribute("src", e);
           }, 3000);
       }
       
@@ -303,7 +346,7 @@
         index--;
         newPath = "images/" + index + ".png";
         document.getElementById("avatar").setAttribute("src", newPath);
-        if (index == 7) {
+        if (index == 3) {
           document.getElementById("rightArrow").style.visibility = "visible";
         }
       }
@@ -313,7 +356,7 @@
         e = img.getAttribute("src");
         path = e.split("/");
         index = path[1].split(".", 1);
-        if (index == 7) {
+        if (index == 3) {
           document.getElementById("rightArrow").style.visibility = "hidden";
         }
         index++;
@@ -340,7 +383,7 @@
           e = img.getAttribute("src");
           path = e.split("/");
           index = path[1].split(".", 1);
-          newPath = "images/" + index + "d.png";
+          newPath = "images/" + index + "-starve.png";
           document.getElementById("avatar").setAttribute("src", newPath);
         }
         else if (ent <= min)
@@ -350,7 +393,7 @@
           e = img.getAttribute("src");
           path = e.split("/");
           index = path[1].split(".", 1);
-          newPath = "images/" + index + "d.png";
+          newPath = "images/" + index + "-stress.png";
           document.getElementById("avatar").setAttribute("src", newPath);
         }
         else if (rest <= min)
@@ -360,7 +403,7 @@
           e = img.getAttribute("src");
           path = e.split("/");
           index = path[1].split(".", 1);
-          newPath = "images/" + index + "d.png";
+          newPath = "images/" + index + "-tired.png";
           document.getElementById("avatar").setAttribute("src", newPath);
         }
         else if(study < max)
@@ -447,22 +490,22 @@
       doalert = setInterval(function()
       {
         study = document.getElementById("belajar").value;
-        if (d % 2 == 0 && study/d <= 20) {
+        if (d % 2 == 0 && study/d*sem <= 20) {
             alert("Hati-hati, anda terancam dropout");
           }
-      },15000)
+      },30000)
 
       statbar = setInterval(function () {
         if (game != 0) {
           hunger = document.getElementById("hunger").value;
           hunger -= 1;
           ent = document.getElementById("entertainment").value;
-          ent -= 2;
+          ent -= 1;
           rest = document.getElementById("rest").value;
-          rest -= 1;
+          rest -= 2;
           study = document.getElementById("belajar").value;
 
-          if (hunger <= min || ent <= min || rest <= min || (d == 7 && study<100)) {
+          if (hunger <= min || ent <= min || rest <= min || (d == 7*sem && study<100)) {
             gameOver(hunger, ent, rest, study);
           }
           if (hunger == low) {

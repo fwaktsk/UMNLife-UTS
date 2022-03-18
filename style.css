@@ -2,6 +2,12 @@ body
 {
     margin: 0;
     font-family: arial;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+    background-image: none;
+    border-radius: 16px;
 }
 
 #icon
@@ -11,22 +17,14 @@ body
 
 #banner
 {
-    margin-top: 20px;
+    background-color: white;
+    padding-top: 20px;
 }
 
 #banner img
 {
     display: block;
     margin: auto;
-}
-
-#ui
-{
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-size: cover;
-    background-image: none;
-    border-radius: 16px;
 }
 
 #regis
